@@ -20,6 +20,8 @@ public class LolTower : MonoBehaviour
     private Minion currentTargetMinion;
     private TeamPlayer currentTargetPlayer;
 
+    public Vector3 enemyPos;
+
     private float towerRange => SettingsManager.GameSettings.TowerRange;
 
     private static Collider[] overlapResults = new Collider[100];
@@ -134,6 +136,7 @@ public class LolTower : MonoBehaviour
                 timer -= attackCooldown;
             }
 
+            enemyPos = currentTargetMinion.transform.position;
             var sqrDistanceToTarget = (currentTargetMinion.transform.position - transform.position).sqrMagnitude;
             if (sqrDistanceToTarget > towerRange * towerRange)
             {
@@ -170,6 +173,7 @@ public class LolTower : MonoBehaviour
                 timer -= attackCooldown;
             }
 
+            enemyPos = currentTargetPlayer.transform.position;
             var sqrDistanceToTarget = (currentTargetPlayer.transform.position - transform.position).sqrMagnitude;
             if (sqrDistanceToTarget > towerRange * towerRange)
             {
